@@ -1,0 +1,63 @@
+---
+title: "Correlation matrix"
+author: "Esau_Moreno"
+date: "16 November 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# A quick start guide to analyze, format and visualize a correlation matrix using R software
+
+```{r}
+# Import your data into R
+C2 <- read.csv(file.choose())
+```
+```{r}
+# Print the first twenty five rows
+head(C2,25)
+```
+
+```{r}
+#Compute correlation matrix
+res <- cor(C2)
+round(res, 2)
+```
+```{r}
+#Use the following R code to handle missing values by case-wise deletion.
+cor(C2, use = "complete.obs")
+```
+```{r}
+#Install Hmisc package
+install.packages("Hmisc")
+```
+```{r}
+#Use rcorr() function
+library("Hmisc")
+res2 <- rcorr(as.matrix(C2))
+res2
+```
+```{r}
+#Extract the correlation coefficients
+res2$r
+```
+```{r}
+#Extract p-values
+res2$P
+```
+```{r}
+#Install corrplot
+install.packages("corrplot")
+```
+```{r}
+#Install corrplot
+install.packages("corrplot")
+```
+```{r}
+# Insignificant correlations are leaved blank
+library(corrplot)
+corrplot(res2$r, type="upper", order="alphabet", p.mat = res2$P, sig.level = 0.01, insig = "blank")
+```
+
