@@ -60,12 +60,12 @@ install.packages("corrplot")
 library(corrplot)
 corrplot(res2$r, type="upper", order="alphabet", p.mat = res2$P, sig.level = 0.01, insig = "blank")
 ```
-{r}```
+```{r}
 # Different method
         corrplot(res2$r, method= "color", type="upper", order="alphabet", p.mat = res2$P, sig.level = 0.05, 
          tl.col="black", tl.srt=45, diag=FALSE, insig = "blank")
 ```        
-{r}```
+```{r}
 # Bring out cor and p values
 res2<-rcorr(as.matrix(C2[,1:7]))
 flattenCorrMatrix(res2$r, res2$P)
@@ -79,7 +79,7 @@ flattenCorrMatrix <- function(cormat, pmat) {
    )
   }
 ```
-{r}```
+```{r}
 # If error with rcorr function:
 install.packages("Hmisc", dependencies = TRUE)
 ```
